@@ -28,4 +28,4 @@ async function renderHome(req, res) {
 
 module.exports = {
   renderHome
-},
+};

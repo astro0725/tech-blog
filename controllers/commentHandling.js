@@ -56,7 +56,7 @@ async function deleteComment(req, res) {
   const comment_id = req.params.id;
 
   try {
-    if (!req.session.userId) {
+    if (!req.session.user_id) {
       return res.status(401).json({ error: "User not authenticated." });
     }
 

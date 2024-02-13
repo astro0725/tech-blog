@@ -3,78 +3,83 @@ const Post = db.Post;
 const User = db.User;
 
 async function createPost(req, title, body) {
-  if (!req.session.user_id) {
-    throw new Error('You must be logged in to create a post');
-  }
-
   try {
-    const post = await Post.create({
-      title,
-      body,
-      user_id: req.session.user_id,
-    });
-    return {success: true, post};
-  } catch (error) {
-    console.error('Error creating post:', error);
-    return {success: false, error: error.message};
-  }
-};
-
-async function editPost(req, title, body) {
-  if (!req.session.user_id) {
-    throw new Error('You must be logged in to edit a post');
-  }
-
-  try {
-    const post = await Post.findOne({
-      where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
-      },
-    });
-
-    if (!post) {
-      throw new Error('Post not found or you do not have permission to edit this post.');
+    if (!req.session.user_id) {
+      return { error: "User not authenticated." };
     }
 
-    post.title = title;
-    post.body = body;
-    await post.save();
+    const user_id = req.session.user_id;
 
-    return {success: true, post};
-  
+    const newPost = await Post.create({
+      title: title,
+      body: body,
+      user_id: user_id
+    });
+
+    console.log("Post created successfully:", newPost);
+    return { success: true, task: newPost };
+  } catch (error) {
+    console.error("Error creating post:", error);
+    return { error: "Error creating post." };
+  }
+}
+
+async function editPost(req, res, title, body) {
+  try {
+    if (!req.session.user_id) {
+      return { error: "User not authenticated." };
+    }
+
+    const user_id = req.session.user_id;
+
+    const existingPost = await Post.findOne({
+      where: { post_id: post_id, user_id: user_id },
+    });
+
+    if (!existingPost) {
+      return res.status(404).json({ error: "Post not found, unable to edit." });
+    }
+
+    existingPost.title = title;
+    existingPost.body = body;
+    await existingPost.save();
+
+    console.log('Post edited successfully:', existingPost);
+    return res.status(200).json({ message: "Post edited successfully" });
+
   } catch (error) {
     console.error('Error editing post:', error);
-    return {success: false, error: error.message};
+    return res.status(500).json({ error: "Error editing post." });
   }
-};
+}
 
-async function deletePost(req) {
-  if (!req.session.user_id) {
-    throw new Error('You must be logged in to delete a post');
-  }
+async function deletePost(req, res) {
+  const post_id = req.params.id;
 
   try {
-    const post = await Post.findOne({
-      where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
-      },
-    });
-
-    if (!post) {
-      throw new Error('Post not found or you do not have permission to delete this post');
+    if (!req.session.userId) {
+      return res.status(401).json({ error: "User not authenticated." });
     }
 
-    await post.destroy();
+    const user_id = req.session.user_id;
 
-    return {success: true};
-  
+    const existingPost = await Post.findOne({
+      where: { post_id: post_id, user_id: user_id },
+    });
+
+    if (!existingPost) {
+      return res.status(404).json({ error: "Post not found, unable to delete." });
+    }
+
+    await existingPost.destroy();
+
+    console.log("Post deleted successfully.");
+    res.status(200).json({ message: "Post deleted successfully." });
   } catch (error) {
-    console.error('Error deleting post:', error);
-    return {success: false, error: error.message};
+    console.error("Error deleting post:", error);
+    res.status(500).json({ error: "Error deleting post." });
   }
-};
+}
 
 async function getPostById(req) {
   try {

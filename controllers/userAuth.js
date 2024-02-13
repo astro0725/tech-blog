@@ -1,6 +1,5 @@
 const db = require('../models');
 const User = db.User;
-// const Session = db.Session;
 
 // function to sign up a new user with username and password
 async function signUpUser(req, username, password) {

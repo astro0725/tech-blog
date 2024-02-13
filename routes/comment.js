@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const commentHandling = require('../controllers/commentHandling');
 
+// POST request to create a new comment
 router.post('/', async (req, res) => {
   const { post_id, body } = req.body; 
 
@@ -18,6 +19,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+// PUT request to edit an existing comment
 router.put('/:id', async (req, res) => {
   const { body } = req.body; 
 
@@ -28,6 +30,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+// DELETE request to delete an existing comment
 router.delete('/:id', async (req, res) => {
   try {
     await commentHandling.deleteComment(req, res);

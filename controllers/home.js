@@ -1,6 +1,6 @@
 const db = require('../models');
-const Post = db.post;
-const User = db.user;
+const Post = db.Post;
+const User = db.User;
 
 async function renderHome(req, res) {
   try {

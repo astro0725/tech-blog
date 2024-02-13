@@ -55,8 +55,32 @@ async function editComment (req, res) {
   }
 };
 
+async function deleteComment (req, res) {
+  try {
+    const comment = await Comment.findOne({
+      where: {
+        id: req.params.id,
+        user_id: req.session.user_id,
+      },
+    });
+
+    if (!comment) {
+      throw new Error('Comment not found or you do not have permission to delete this comment.');
+    }
+
+    await comment.destroy();
+
+    return { success: true };
+
+  } catch (error) {
+    console.error('Error deleting comment:', error);
+    return { success: false, error: error.message };
+  }
+};
+
 module.exports = {
   createComment,
   getPostComments,
   editComment,
-},
+  deleteComment
+};

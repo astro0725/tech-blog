@@ -19,8 +19,8 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   store: new SequelizeStore({
     db: dbTech,
-    table: 'Sessions',
-    model: 'Sessions'
+    table: 'Session',
+    model: 'Session'
   }),
   resave: false,
   saveUninitialized: false,

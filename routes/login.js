@@ -2,14 +2,16 @@ const express = require('express');
 const router = express.Router();
 const { loginUser } = require('../controllers/userAuth');
 
+// GET request to render the signin page
 router.get('/', (req, res) => {
   try {
-    res.render('login');
+    res.render('signin');
   } catch (error) {
-    console.error('Login render error', error);
+    console.error("Signin Error:", error);
   }
 });
 
+// POST request to handle the form submission
 router.post('/', async (req, res) => {
   const { username, password } = req.body;
 
@@ -19,14 +21,13 @@ router.post('/', async (req, res) => {
     if (result.success) {
       if (req.session.authenticated) {
         res.json({ success: true, redirectUrl: '/dashboard' });
-      }
+      };
     } else {
-      res.json({ success: false, error: result.error });
+      res.status(400).json({ error: result.error });
     }
-
   } catch (error) {
-    console.error('Login error in route: ' + error);
-    res.status(500).send({ error: error.message });
+    console.error('Error in signin route:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 

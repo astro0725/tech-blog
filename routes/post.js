@@ -1,53 +1,35 @@
 const express = require('express');
 const router = express.Router();
-const { createPost, editPost, deletePost, getPostById } = require('../controllers/postHandling');
+const postHandling = require('../controllers/postHandling');
 
-router.get('/:id', async function (req, res) {
-  try {
-    const post = await getPostById(req); 
-    res.render('single-post', { post: post.post }); 
-
-  } catch (error) {
-    console.error('Error getting post by id:', error);
-    res.status(500).send({ error: error.message });
-  }
-});
-
-router.post('/', async function(req, res) {
+router.post('/', async (req, res) => {
   const { title, body } = req.body;
-
-  try {
-    const result = await createPost(req, title, body);
-    res.json(result);
-
-  } catch (error) {
-    console.error('Error creating post:', error);
-    res.status(500).send({ error: error.message });
+  const result = await postHandling.createPost(req, title, body);
+  if (result.error) {
+    return res.status(400).json(result);
   }
+  res.json(result);
 });
 
-router.put('/:id', async function(req, res) {
+// Route to edit an existing post
+router.put('/:id', async (req, res) => {
   const { title, body } = req.body;
-
-  try {
-    const result = await editPost(req, title, body);
-    res.json(result);
-
-  } catch (error) {
-    console.error('Error editing post:', error);
-    res.status(500).send({ error: error.message });
-  }
+  const { id } = req.params;
+  await postHandling.editPost(req, res, id, title, body);
 });
 
-router.delete('/:id', async function(req, res) {
-  try {
-    const result = await deletePost(req);
-    res.json(result);
+// Route to delete a post
+router.delete('/:id', async (req, res) => {
+  await postHandling.deletePost(req, res);
+});
 
-  } catch (error) {
-    console.error('Error deleting post:', error);
-    res.status(500).send({ error: error.message });
+// Route to get a single post by ID
+router.get('/:id', async (req, res) => {
+  const result = await postController.getPostById(req);
+  if (result.error) {
+    return res.status(404).json(result);
   }
+  res.json(result);
 });
 
 module.exports = router;

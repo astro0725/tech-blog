@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Session',
+    tablename: 'session',
     timestamps: true,
   });
   Session.associate = models => {

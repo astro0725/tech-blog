@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Post',
+    tablename: 'post',
     timestamps: true,
   });
   Post.associate = models => {

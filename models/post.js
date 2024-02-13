@@ -38,4 +38,5 @@ module.exports = (sequelize, DataTypes) => {
       as: 'comments'
     });
   };
+  return Post;
 };

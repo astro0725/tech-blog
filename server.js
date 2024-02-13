@@ -7,7 +7,7 @@ const session = require('express-session');
 // import connect-session-sequelize to store session data in sequelize
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 // import db object from models folder to interact with the database
-const dbTech = require('./models/')
+const dbTech = require('./models')
 // import express-handlebars for view rendering
 const exphbs = require('express-handlebars');
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { logoutUser } = require('../../controllers/userAuth');
+const { logoutUser } = require('../controllers/userAuth');
 
 // POST request to logout authenticated user
 router.post('/', async (req, res) => {

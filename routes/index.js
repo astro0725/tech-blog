@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.router();
+const router = express.Router();
 
 // import route modules
 const homeRoutes = require('./home');

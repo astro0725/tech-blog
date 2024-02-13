@@ -25,6 +25,7 @@ async function renderDashboard(req, res) {
     // render the 'dashboard' template, passing the user's posts to it
     res.render('dashboard', {
       posts,
+      userIsAuthenticated: req.session.user ? true : false
     });
 
   } catch (error) {

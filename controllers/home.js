@@ -22,6 +22,7 @@ async function renderHome(req, res) {
     // render the 'home' template, passing the posts data to it
     res.render('home', {
       posts: postsPlain,
+      userIsAuthenticated: req.session.user ? true : false
     });
 
   } catch (error) {

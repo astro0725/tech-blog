@@ -6,7 +6,7 @@ const User = db.User;
 async function renderHome(req, res) {
   try {
     // retrieve all posts from the database, including the username of the user who created each post
-    const post = await Post.findAll({
+    const posts = await Post.findAll({
       include: [
         {
           model: User, // specifies that we want to include data from the User model
@@ -17,7 +17,7 @@ async function renderHome(req, res) {
     });
 
     // convert the posts data into a plain format for easier handling in the template
-    const postsPlain = post.map(post => post.get({ plain: true }));
+    const postsPlain = posts.map(post => post.get({ plain: true }));
 
     // render the 'home' template, passing the posts data to it
     res.render('home', {

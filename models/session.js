@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Session',
     tablename: 'session',
+    freezeTableName: true,
     timestamps: true,
   });
   Session.associate = models => {

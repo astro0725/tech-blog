@@ -32,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Comment',
     tablename: 'comment',
+    freezeTableName: true,
     timestamps: true,
   });
   Comment.associate = models => {

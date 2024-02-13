@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `Comment` (
 );
 
 -- Session Table
-CREATE TABLE IF NOT EXISTS `Sessions` (
+CREATE TABLE IF NOT EXISTS `Session` (
     `sid` VARCHAR(255) PRIMARY KEY,
     `user_id` INT NOT NULL,
     `expires` DATETIME NOT NULL,

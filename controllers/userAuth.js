@@ -1,9 +1,9 @@
 const db = require("../models");
 const User = db.User;
-const Session = db.Session;
+// const Session = db.Session;
 
 // function to sign up a new user with username and password
-async function signUpUser(req, password, username) {
+async function signUpUser(req, username, password) {
   console.log("Received request body:", req.body);
 
   try {
@@ -27,6 +27,35 @@ async function signUpUser(req, password, username) {
   }
 }
 
+async function loginUser(req, username, password) {
+  console.log("Received request body:", req.body);
+
+  try {
+    // find the user record in the database
+    const user = await User.findOne({ where: { username: username } });
+    console.log("User:", user.toJSON());
+
+    // if the user record is found, compare the password
+    if (user && user.password === password) {
+      console.log("User authenticated:", user);
+      req.session.authenticated = true;
+      req.session.user_id = user.id;
+      console.log("Session ID:", req.session.id);
+      console.log ("User ID:", req.session.user_id);
+      return {success: true};
+
+    } else {
+      console.log("User not authenticated");
+      return {success: false, error: "Invalid username or password"};
+    }
+
+  } catch (error) {
+    console.log("Error:", error);
+    return {success: false, error: error};
+  }
+}
+
 module.exports = {
   signUpUser,
+  loginUser,
 }

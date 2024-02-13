@@ -14,8 +14,7 @@ async function signUpUser(req, password, username) {
     // store session record in the database
     req.session.authenticated = true;
     req.session.user_id = newUser.id;
-    
-    await Session.update ({user_id: newUser.id}, {where: {sid: req.session.id}});
+
     console.log("Session ID:", req.session.id);
     console.log ("User ID:", req.session.user_id);
 

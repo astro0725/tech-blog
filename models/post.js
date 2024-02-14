@@ -8,14 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'User',
-        key: 'id'
-      }
-    },
+    user_id: DataTypes.INTEGER, 
     title: {
       type: DataTypes.STRING,
       allowNull: false
@@ -27,13 +20,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Post',
-    tablename: 'post',
-    freezeTableName: true,
     timestamps: true,
   });
   Post.associate = models => {
     Post.belongsTo(models.User, {
       foreignKey: 'user_id',
+      as: 'user',
     });
     Post.hasMany(models.Comment, {
       foreignKey: 'post_id',

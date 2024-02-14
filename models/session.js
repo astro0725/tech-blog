@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  class Session extends sequelize.Sequelize.Model {}
-  Session.init({
+  class Sessions extends sequelize.Sequelize.Model {}
+  Sessions.init({
     sid: {
       type: DataTypes.STRING,
       primaryKey: true,
@@ -10,15 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     data: DataTypes.TEXT,
   }, {
     sequelize,
-    modelName: 'Session',
-    tablename: 'session',
-    freezeTableName: true,
+    modelName: 'Sessions',
     timestamps: true,
   });
-  Session.associate = models => {
-      Session.belongsTo(models.User, {
+  Sessions.associate = models => {
+      Sessions.belongsTo(models.User, {
           foreignKey: 'user_id',
       });
     };
-  return Session;
+  return Sessions;
 };

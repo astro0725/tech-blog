@@ -30,8 +30,8 @@ app.use(session({
   secret: process.env.SESSION_SECRET, // secret used to sign the session ID cookie
   store: new SequelizeStore({ // configure sequelize store to save session info in db
     db: dbTech,
-    table: 'Session', // specify the table name to store sessions
-    model: 'Session' // specify the model name for sessions
+    model: 'Sessions', // specify the model name for sessions
+    table: 'Sessions', // specify the table name for sessions
   }),
   resave: false, // don't save session if unmodified
   saveUninitialized: false, // don't create session until something stored

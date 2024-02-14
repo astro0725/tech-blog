@@ -20,12 +20,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
-    tablename: 'user',
-    freezeTableName: true,
     timestamps: true,
   });
   User.associate = models => {
-    User.hasMany(models.Session, { 
+    User.hasMany(models.Sessions, { 
       foreignKey: 'user_id', 
     });
     User.hasMany(models.Post, {

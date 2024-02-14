@@ -21,6 +21,7 @@ router.post('/', async (req, res) => {
     if (result.success) {
       if (req.session.authenticated) {
         res.json({ success: true, redirectUrl: '/dashboard' });
+        console.log('Accessing user_id:', req.session.user_id);
       };
     } else {
       res.status(400).json({ error: result.error });

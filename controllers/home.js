@@ -10,6 +10,7 @@ async function renderHome(req, res) {
       include: [
         {
           model: User, // specifies that we want to include data from the User model
+          as: 'user', // specifies that we want to include the user data as 'user'
           attributes: ['username'] // only fetch the username attribute from the User model
         }
       ],

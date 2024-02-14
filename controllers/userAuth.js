@@ -1,28 +1,34 @@
 const db = require('../models');
 const User = db.User;
+const Session = db.Sessions;
 
-// function to sign up a new user with username and password
 async function signUpUser(req, username, password) {
-  console.log('Received request body:', req.body);
+  console.log("Received request body:", req.body);
 
   try {
     // create a new user record in the database
     const newUser = await User.create({ username, password });
-    console.log('New User:', newUser.toJSON());
+    console.log("New User:", newUser.toJSON());
 
-    // store session record in the database
-    req.session.authenticated = true;
-    req.session.user_id = newUser.id;
+    // store user session data (e.g., user ID) once signed up
+    req.session.authenticated = true; 
+    req.session.user_id = newUser.id; 
+    console.log(req.session.id);
 
-    console.log('Session ID:', req.session.id);
-    console.log ('User ID:', req.session.user_id);
+    await Session.update({ user_id: newUser.id }, { where: { sid: req.session.id } });
+    console.log("Session model:", Session);
+    console.log("Session table:", Session.tableName)
+    console.log("Session table fields:", Session.rawAttributes);
+    console.log("Session ID:", req.session.id);
+    console.log("User ID:", newUser.id); 
+    console.log ('User ID passed to session:', req.session.user_id);
 
-    console.log('User registered:', newUser);
-    return {success: true};
-
+    // log the user info
+    console.log("User registered:", newUser);
+    return { success: true };
   } catch (error) {
-    console.log('Error:', error);
-    return {success: false, error: error};
+    console.error("Error during sign up:", error);
+    return { error: "Error during sign up" };
   }
 }
 
@@ -31,18 +37,28 @@ async function loginUser(req, username, password) {
   console.log('Received request body:', req.body);
 
   try {
-    // find the user record in the database
+    // attempt to find the user by username in the database
     const user = await User.findOne({ where: { username: username } });
     console.log('User:', user.toJSON());
 
-    // if the user record is found, compare the password
+    if (!user) {
+      // user with the provided username does not exist
+      return { error: "User not found." };
+    }
+
     if (user && user.password === password) {
       console.log('User authenticated:', user);
-      req.session.authenticated = true;
-      req.session.user_id = user.id;
+      req.session.authenticated = true; 
+      req.session.user_id = user.id; 
       console.log('Session ID:', req.session.id);
       console.log ('User ID:', req.session.user_id);
-      return {success: true};
+
+      await Session.update({ user_id: user.id }, { where: { sid: req.session.id } });
+      console.log("Session model:", Session);
+      console.log("Session ID:", req.session.id);
+      console.log ('User ID passed to session:', req.session.user_id);
+
+      return { success: true, user };
 
     } else {
       console.log('User not authenticated');

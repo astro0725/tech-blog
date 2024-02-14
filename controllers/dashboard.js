@@ -13,6 +13,7 @@ async function renderDashboard(req, res) {
       include: [
         {
           model: User, // include data from the User model
+          as: 'user', // alias the user data as 'user'
           attributes: ['username'], // fetch only the username attribute of the user
         }
       ],

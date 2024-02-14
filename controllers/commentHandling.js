@@ -2,7 +2,7 @@ const db = require('../models');
 const Comment = db.Comment;
 
 // define an asynchronous function to create a comment
-async function createComment(req, title, body) {
+async function createComment(req, body) {
   try {
     // check if the user is logged in by verifying session user_id
     if (!req.session.user_id) {

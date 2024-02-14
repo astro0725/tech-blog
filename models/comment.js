@@ -8,22 +8,8 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    post_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Post',
-        key: 'id'
-      }
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'User',
-        key: 'id'
-      }
-    },
+    post_id: DataTypes.INTEGER, 
+    user_id: DataTypes.INTEGER, 
     body: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -31,13 +17,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Comment',
-    tablename: 'comment',
-    freezeTableName: true,
     timestamps: true,
   });
   Comment.associate = models => {
     Comment.belongsTo(models.User, {
       foreignKey: 'user_id',
+      as: 'user',
     });
     Comment.belongsTo(models.Post, {
       foreignKey: 'post_id',

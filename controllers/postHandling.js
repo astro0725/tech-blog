@@ -114,6 +114,7 @@ async function getPostById(req) {
       include: [
         {
           model: User,
+          as: 'user',
           attributes: ['username'],
         },
       ],

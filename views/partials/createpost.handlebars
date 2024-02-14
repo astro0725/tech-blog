@@ -1,4 +1,4 @@
-<a href="#create-post-modal" class="submit-content :hover">Create Post</a>
+<a href="#create-post-modal" id="open-modal" class="submit-content :hover">Create Post</a>
 
 <div class="modal hidden" role="dialog" id="create-post-modal">
   <div class="modal-box">
@@ -18,8 +18,10 @@
       </div>
     </form>
     <div class="modal-action">
-    <a href="/dashboard" class="cancel :hover">Cancel</a>
-    <a href="/dashboard" id="create-post" class="submit-content :hover">Confirm</a>
+      <a href="/dashboard" id="close-modal" class="cancel :hover">Cancel</a>
+      <a href="/dashboard" id="create-post" class="submit-content :hover">Confirm</a>
     </div>
   </div>
 </div>
+
+<script src='js/create-post.js'></script>

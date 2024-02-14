@@ -23,7 +23,7 @@ async function renderHome(req, res) {
     // render the 'home' template, passing the posts data to it
     res.render('home', {
       posts: postsPlain,
-      userIsAuthenticated: req.session.user ? true : false
+      userIsAuthenticated: req.cookies['connect.sid'] ? true : false
     });
 
   } catch (error) {

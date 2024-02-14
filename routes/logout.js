@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
     await logoutUser(req);
     res.clearCookie('connect.sid');
     console.log('User signed out successfully'); 
-    res.redirect('/signin'); 
+    res.json({ success: true, redirectUrl: '/login' });
   } catch (error) {
     console.error('Error signing out user:', error); 
     res.status(400).send(error.message);

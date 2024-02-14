@@ -8,6 +8,8 @@ const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 // import db object from models folder to interact with the database
 const dbTech = require('./models')
+// import cookieparser to parse cookies from the request headers
+const cookieParser = require('cookie-parser');
 // import express-handlebars for view rendering
 const exphbs = require('express-handlebars');
 
@@ -46,6 +48,9 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 // middleware to parse JSON bodies
 app.use(express.json());
+
+// use cookie parser middleware to parse cookies from the request headers
+app.use(cookieParser());
 
 // import routes from the routes directory and use them
 const routes = require('./routes/index');

@@ -73,27 +73,27 @@ async function loginUser(req, username, password) {
 
 // logout authenticated user
 async function logoutUser(req) {
-  return new Promise((resolve, reject) =>{
-    try{
+  return new Promise((resolve, reject) => {
+    try {
       // check if a user session exists
       if (req.session) {
         // destroy the user's session
         req.session.destroy(err => {
           if (err) {
-            console.error('Error destroying session:', err);
-            reject('Error destroying session.');
+            console.error("Error destroying session:", err);
+            reject("Error destroying session.");
           } else {
-            console.log('User signed out successfully.');
+            console.log("User signed out successfully.");
             resolve({ success: true });
           }
         });
       } else {
-        console.error('No active session to log out.');
-        reject('No active session.');
+        console.error("No active session to log out.");
+        reject("No active session.");
       }
     } catch (error) {
-      console.error('Error during logout:', error);
-      reject('Error during logout.');
+      console.error("Error during logout:", error);
+      reject("Error during logout.");
     }
   });
 }

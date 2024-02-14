@@ -10,8 +10,9 @@ document.getElementById('logoutBtn').addEventListener('click', async function(ev
     });
 
     if (response.ok) {
-      console.log('User signed out successfully');
-      window.location.href = '/signin';
+        const data = await response.json(); 
+        window.location.href = data.redirectUrl; 
+        console.log('User logged out successfully!');
     } else {
       console.error('Failed to sign out:', response.statusText);
     }

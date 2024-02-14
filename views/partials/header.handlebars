@@ -5,7 +5,7 @@
         <li><a href='/'>Home</a></li>
         <li><a href='/dashboard'>Dashboard</a></li>
         {{#if userIsAuthenticated}}
-          <li><a href='/logout'>Logout</a></li>
+          <li class="logoutBtn"><a href='/logout'>Logout</a></li>
         {{else}}
           <li><a href='/signup'>Sign Up</a></li>
           <li><a href='/login'>Login</a></li>
@@ -17,3 +17,5 @@
     <h1 href='/' class='blog-title'>The Tech Blog</h1>
   </div>
 </header>
+
+<script src='js/logout.js'></script>

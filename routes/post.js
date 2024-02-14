@@ -25,12 +25,8 @@ router.delete('/:id', async (req, res) => {
 });
 
 // GET request to retrieve post by id
-router.get('/:id', async (req, res) => {
-  const result = await postHandling.getPostById(req);
-  if (result.error) {
-    return res.status(404).json({ error: result.error });
-  }
-  res.render('post-page', { post: result.post.get({ plain: true }) });
+router.get('/:id', (req, res) => {
+  postHandling.getPostById(req, res);
 });
 
 module.exports = router;

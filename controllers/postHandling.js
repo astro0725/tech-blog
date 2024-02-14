@@ -106,7 +106,7 @@ async function deletePost(req, res) {
 }
 
 // function to get a post by its id
-async function getPostById(req) {
+async function getPostById(req, res) {
   try {
     // find the post by id, including the username of the poster
     const post = await Post.findOne({
@@ -125,8 +125,13 @@ async function getPostById(req) {
       throw new Error('Post not found');
     }
 
+    const postPlain = post.get({ plain: true });
+
     // return the found post
-    return {success: true, post};
+    res.render('post-page', { 
+      post: postPlain,
+      userIsAuthenticated: req.cookies['connect.sid'] ? true : false
+    });
   } catch (error) {
     // log any errors that occur
     console.error('Error getting post by id:', error);

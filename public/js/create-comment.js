@@ -16,6 +16,9 @@ document.getElementById('create-comment').addEventListener('click', function() {
   })
   .then(data => {
     console.log('Success:', data);
+    // Optionally, clear the textarea after successful submission
+    document.getElementById('comment-body').value = '';
+    window.location.reload();
   })
   .catch((error) => {
     console.error('Error:', error);

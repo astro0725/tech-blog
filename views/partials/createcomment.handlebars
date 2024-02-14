@@ -1,8 +1,5 @@
-<section class='comment-container'>
-	<div class='comment-left'>
-		<div class='py-6 md:py-0 md:px-6'>
-			<h3 class='modal-header'>Start the conversation</h3>
-		</div>
+<section class='create-comment-container'>
+  <div class="comment-form-container">
     <form id='comment-form' class='form-body'>
       <div class='form-control'>
         <label class='label'>
@@ -11,10 +8,8 @@
         <textarea id='comment-body' placeholder='Type something here...'></textarea>
       </div>
     </form>
-    <div class='modal-action'>
-      <a href='/dashboard' id='create-comment' class='submit-content :hover'>Send</a>
-    </div>
-	</div>
+    <button id='create-comment' class='submit-content send-button'>Send</button>
+  </div>
 </section>
 
 <script src='js/create-comment.js'></script>

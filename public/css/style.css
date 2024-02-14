@@ -351,15 +351,39 @@ textarea {
   font-weight: 600;
 }
 
-.comment-container{
-  padding-top: 24px;
-  padding-bottom: 24px;
+.comment {
+  width: 91vw;
+  padding: 40px 24px 30px;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  background-color: var(--light);
 }
 
-.comment-left{
+.comment-date-text {
+  font-size: 14px;
+  line-height: 20px; 
+  color: var(--hover);
+}
+
+.comment-body {
+  margin-top: 8px;
+  overflow: hidden;
+  color: var(--dark);
+}
+
+.comment-user {
+  justify-content: end;
+  color: var(--hover);
+  font-weight: 600;
+}
+
+.create-comment-container{
+  padding-top: 24px;
+  padding-bottom: 24px;
   display: grid;
-  max-width: 240px;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
+  width: 91vw;
+  columns: 2;
   padding-left: 24px; 
   padding-right: 24px; 
   margin-left: auto;
@@ -368,10 +392,14 @@ textarea {
   border-left-width: 2px;
 }
 
-.comment-form{
+.comment-form-container {
   display: flex;
-  flex-direction: column;
-    padding-top: 24px;
+  gap: 10px; 
+  align-items: center; 
+}
+
+.comment-form{
+  padding-top: 24px;
   padding-bottom: 24px;
 }
 
@@ -401,6 +429,10 @@ textarea {
 
 .submit-content:hover {
   background-color: var(--hover);
+}
+
+.send-button{
+  height: 50%;
 }
 
 .cancel{

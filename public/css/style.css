@@ -116,6 +116,13 @@ textarea {
   box-shadow: 5px 5px 0px 5px var(--select);
 }
 
+.home-container {
+  display: grid;
+  grid-column-start: 1;
+  grid-auto-flow: row;
+  place-items: center;
+}
+
 .sign-form {
   display: grid;
   margin-top: 10px;

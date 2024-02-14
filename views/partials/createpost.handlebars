@@ -1,0 +1,25 @@
+<a href="#create-post-modal" class="submit-content :hover">Create Post</a>
+
+<div class="modal hidden" role="dialog" id="create-post-modal">
+  <div class="modal-box">
+    <h3 class="modal-header">Create A Post</h3>
+    <form id="post-form" class="form-body">
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Title</span>
+        </label>
+        <input id="post-title" placeholder="Title" class="input input-bordered" required />
+      </div>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Content</span>
+        </label>
+        <textarea id="post-body" placeholder="Type something here..."></textarea>
+      </div>
+    </form>
+    <div class="modal-action">
+    <a href="/dashboard" class="cancel :hover">Cancel</a>
+    <a href="/dashboard" id="create-post" class="submit-content :hover">Confirm</a>
+    </div>
+  </div>
+</div>

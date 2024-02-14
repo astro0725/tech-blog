@@ -1,27 +1,33 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var openModalLink = document.getElementById('open-modal');
-  var closeModalLink = document.getElementById('close-modal');
-  var modal = document.getElementById('create-post-modal');
+  const openModalLink = document.getElementById('open-modal');
+  const closeModalLink = document.getElementById('close-modal');
+  const modal = document.getElementById('create-post-modal');
 
-  openModalLink.addEventListener('click', openModal);
+  // Toggle modal visibility
+  const toggleModal = (isVisible) => {
+    modal.classList.toggle('hidden', !isVisible);
+  };
 
-  function openModal(event) {
+  // Open modal event listener
+  openModalLink.addEventListener('click', (event) => {
     event.preventDefault();
-    modal.classList.remove('hidden');
-  }
+    toggleModal(true);
+  });
 
-  closeModalLink.addEventListener('click', closeModal);
-  function closeModal(event) {
+  // Close modal event listener
+  closeModalLink.addEventListener('click', (event) => {
     event.preventDefault();
-    modal.classList.add('hidden');
-  }
+    toggleModal(false);
+  });
 
-  window.addEventListener('click', function(event) {
+  // Close modal if clicked outside of modal content
+  window.addEventListener('click', (event) => {
     if (event.target === modal) {
-      modal.classList.add('hidden');
+      toggleModal(false);
     }
   });
 });
+
 
 document.getElementById('create-post').addEventListener('click', function() {
   const title = document.getElementById('post-title').value;

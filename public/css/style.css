@@ -16,6 +16,7 @@
   border-color: var(--light);
   --ring-offset-shadow: 0 0 #0000;
   --ring-shadow: 0 0 #0000;
+  z-index: 0;
 }
 
 .hidden {
@@ -194,7 +195,7 @@ textarea {
   justify-items: center;
   padding: 0px;
   opacity: 0;
-  z-index: 999;
+  z-index: 10;
   background-color: transparent;
   color: inherit;
   transition-duration: 200ms;

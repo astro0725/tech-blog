@@ -1,16 +1,16 @@
 <div>
-{{#if post.length}}
-  {{#each post}}
+{{#if posts.length}}
+  {{#each posts as |post|}}
     <div class='post'>
       <div class='date-container'>
-        <span class='date-text'>{{createdAt}}</span>
+        <span class='date-text'>{{post.createdAt}}</span>
       </div>
       <div class='post-content'>
-        <a href='/post/{{id}}' class='post-title'>{{title}}</a>
-        <p class='post-body'>{{body}}</p>
+        <a href='/post/{{post.id}}' class='post-title'>{{post.title}}</a>
+        <p class='post-body'>{{post.body}}</p>
       </div>
       <div class='post-footer'>
-        <span class='post-user'>{{user.username}}</span>
+        <span class='post-user'>{{post.user.username}}</span>
       </div>
     </div>
   {{/each}}

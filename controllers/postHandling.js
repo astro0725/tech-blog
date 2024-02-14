@@ -2,6 +2,7 @@
 const db = require('../models');
 const Post = db.Post;
 const User = db.User;
+const Comment = db.Comment;
 
 // function to create a post
 async function createPost(req, title, body) {
@@ -108,7 +109,6 @@ async function deletePost(req, res) {
 // function to get a post by its id
 async function getPostById(req, res) {
   try {
-    // find the post by id, including the username of the poster
     const post = await Post.findOne({
       where: { id: req.params.id },
       include: [
@@ -117,25 +117,31 @@ async function getPostById(req, res) {
           as: 'user',
           attributes: ['username'],
         },
+        {
+          model: Comment,
+          as: 'comments', 
+          include: [{
+            model: User,
+            as: 'user',
+            attributes: ['username'],
+          }]
+        }
       ],
     });
 
-    // if post not found, throw error
     if (!post) {
       throw new Error('Post not found');
     }
 
     const postPlain = post.get({ plain: true });
 
-    // return the found post
-    res.render('post-page', { 
+    res.render('post-page', {
       post: postPlain,
       userIsAuthenticated: req.cookies['connect.sid'] ? true : false
     });
   } catch (error) {
-    // log any errors that occur
     console.error('Error getting post by id:', error);
-    return {success: false, error: error.message};
+    res.status(500).send('Error fetching post details');
   }
 };
 

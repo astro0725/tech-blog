@@ -317,7 +317,7 @@ textarea {
 .date-text {
   font-size: 14px;
   line-height: 20px; 
-  color: var(--select);
+  color: var(--light);
 }
 
 .post-content {

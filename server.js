@@ -12,6 +12,8 @@ const dbTech = require('./models')
 const cookieParser = require('cookie-parser');
 // import express-handlebars for view rendering
 const exphbs = require('express-handlebars');
+//import moment to format date rendering in frontend
+const moment = require('moment');
 
 // create a handlebars instance with default layout and partials directory configuration
 const hbs = exphbs.create({ 
@@ -19,11 +21,7 @@ const hbs = exphbs.create({
   partialsDir: ['views/partials/'],
   helpers: {
     formatDate: function(date) {
-      const newDate = new Date(date);
-      const day = newDate.getDate();
-      const month = newDate.getMonth() + 1;
-      const year = newDate.getFullYear();
-      return `${day}/${month}/${year}`; 
+      return moment(date).format('DD/MM/YYYY');
     }
   }
 });

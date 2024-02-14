@@ -16,7 +16,16 @@ const exphbs = require('express-handlebars');
 // create a handlebars instance with default layout and partials directory configuration
 const hbs = exphbs.create({ 
   defaultLayout: 'main',
-  partialsDir: ['views/partials/']
+  partialsDir: ['views/partials/'],
+  helpers: {
+    formatDate: function(date) {
+      const newDate = new Date(date);
+      const day = newDate.getDate();
+      const month = newDate.getMonth() + 1;
+      const year = newDate.getFullYear();
+      return `${day}/${month}/${year}`; 
+    }
+  }
 });
 
 // create an express application

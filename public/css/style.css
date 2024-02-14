@@ -300,12 +300,12 @@ textarea {
 }
 
 .post {
-  width: 100%;
-  padding: 40px 24px 40px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 91vw;
+  padding: 40px 24px 30px;
+  margin-top: 10px;
   border-radius: 8px;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  background-color: var(--dark);
 }
 
 .date-container {
@@ -328,17 +328,20 @@ textarea {
   font-size: 24px; 
   line-height: 32px; 
   font-weight: 700;
+  color: var(--select);
 }
 
 .post-body {
   margin-top: 8px;
   overflow: hidden;
+  color: var(--light);
 }
 
 .post-footer {
   display: flex;
   align-items: center;
-  margin-top: 16px;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 .post-user {

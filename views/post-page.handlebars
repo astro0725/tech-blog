@@ -1,21 +1,18 @@
-<div>
-{{#if posts.length}}
-  {{#each posts as |post|}}
+<div class='container'>
+  <div>
     <div class='post'>
       <div class='date-container'>
         <span class='date-text'>{{formatDate post.createdAt}}</span>
       </div>
       <div class='post-content'>
-        <a href='/post/{{post.id}}' class='post-title'>{{post.title}}</a>
+        <a class='post-title'>{{post.title}}</a>
         <p class='post-body'>{{post.body}}</p>
       </div>
       <div class='post-footer'>
         <span></span>
         <span class='post-user'>{{post.user.username}}</span>
       </div>
-    </div>
-  {{/each}}
-{{else}}
-  <p>No posts found</p>
-{{/if}}
+  </div>
+  {{> comment }}
+  {{> createcomment }}
 </div>

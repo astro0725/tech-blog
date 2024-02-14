@@ -325,6 +325,7 @@ textarea {
 }
 
 .post-title {
+  text-decoration: none;
   font-size: 24px; 
   line-height: 32px; 
   font-weight: 700;

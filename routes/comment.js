@@ -19,17 +19,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// PUT request to edit an existing comment
-router.put('/:id', async (req, res) => {
-  const { body } = req.body; 
-
-  try {
-    await commentHandling.editComment(req, res, body);
-  } catch (error) {
-    console.error('Error editing comment:', error);
-  }
-});
-
 // DELETE request to delete an existing comment
 router.delete('/:id', async (req, res) => {
   try {

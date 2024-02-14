@@ -28,42 +28,6 @@ async function createComment(req, title, body) {
   }
 }
 
-// define an asynchronous function to edit a comment
-async function editComment(req, res, title, body) {
-  try {
-    // check if the user is logged in by verifying session user_id
-    if (!req.session.user_id) {
-      return { error: "User not authenticated." }; // return an error if the user is not logged in
-    }
-
-    const user_id = req.session.user_id; // retrieve the user_id from the session
-
-    // find the comment by comment_id and user_id to ensure the user owns the comment
-    const existingComment = await Comment.findOne({
-      where: { comment_id: comment_id, user_id: user_id },
-    });
-
-    // if the comment is not found, return a 404 error
-    if (!existingComment) {
-      return res.status(404).json({ error: "Comment not found, unable to edit." });
-    }
-
-    // update the comment's title and body
-    existingComment.title = title;
-    existingComment.body = body;
-    await existingComment.save(); // save the changes
-
-    // log the successful edit of the comment
-    console.log('Comment edited successfully:', existingComment);
-    return res.status(200).json({ message: "Comment edited successfully" }); // return a success message
-
-  } catch (error) {
-    // log any errors that occur during the comment edit
-    console.error('Error editing comment:', error);
-    return res.status(500).json({ error: "Error editing comment." }); // return an error message
-  }
-}
-
 // define an asynchronous function to delete a comment
 async function deleteComment(req, res) {
   const comment_id = req.params.id; // retrieve the comment_id from the request parameters
@@ -101,6 +65,5 @@ async function deleteComment(req, res) {
 
 module.exports = {
   createComment,
-  editComment,
-  deleteComment,
+  deleteComment
 }

@@ -1,0 +1,19 @@
+<div>
+{{#if comment.length}}
+  {{#each comment}}
+    <div class="post">
+      <div class="date-container">
+        <span class="date-text">{{createdAt}}</span>
+      </div>
+      <div class="post-content">
+        <p class="post-body">{{body}}</p>
+      </div>
+      <div class="post-footer">
+        <span class="post-user">{{username}}</span>
+      </div>
+    </div>
+  {{/each}}
+{{else}}
+  <p>No comments found</p>
+{{/if}}
+</div>

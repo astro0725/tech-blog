@@ -392,6 +392,7 @@ textarea {
 
 .post-body {
   margin-top: 8px;
+  overflow: hidden;
 }
 
 .post-footer {
@@ -404,4 +405,29 @@ textarea {
   justify-content: end;
   color: var(--select);
   font-weight: 600;
+}
+
+.comment-container{
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.comment-left{
+  display: grid;
+  max-width: 240px;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  padding-left: 24px; 
+  padding-right: 24px; 
+  margin-left: auto;
+  margin-right: auto;
+  border-right-width: 0px;
+  border-left-width: 2px;
+}
+
+.comment-form{
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  margin-top: 24px; 
 }

@@ -3,19 +3,18 @@ document.addEventListener('DOMContentLoaded', function() {
   var closeModalLink = document.getElementById('close-modal');
   var modal = document.getElementById('create-post-modal');
 
+  openModalLink.addEventListener('click', openModal);
+
   function openModal(event) {
     event.preventDefault();
     modal.classList.remove('hidden');
   }
 
+  closeModalLink.addEventListener('click', closeModal);
   function closeModal(event) {
     event.preventDefault();
     modal.classList.add('hidden');
   }
-
-  openModalLink.addEventListener('click', openModal);
-
-  closeModalLink.addEventListener('click', closeModal);
 
   window.addEventListener('click', function(event) {
     if (event.target === modal) {

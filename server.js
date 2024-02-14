@@ -21,7 +21,7 @@ const hbs = exphbs.create({
   partialsDir: ['views/partials/'],
   helpers: {
     formatDate: function(date) {
-      return moment(date).format('DD/MM/YYYY');
+      return moment(date).format('MM/DD/YYYY');
     }
   }
 });

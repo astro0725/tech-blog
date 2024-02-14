@@ -4,13 +4,15 @@
     <div class='post'>
       <div class='date-container'>
         <span class='date-text'>{{formatDate post.createdAt}}</span>
+        {{#if userEdit}}
+          {{> editpost }}
+        {{/if}}
       </div>
       <div class='post-content'>
         <a href='/post/{{post.id}}' class='post-title'>{{post.title}}</a>
         <p class='post-body'>{{post.body}}</p>
       </div>
       <div class='post-footer'>
-        <span></span>
         <span class='post-user'>{{post.user.username}}</span>
       </div>
     </div>

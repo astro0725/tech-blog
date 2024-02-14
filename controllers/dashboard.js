@@ -27,7 +27,11 @@ async function renderDashboard(req, res) {
     });
 
     // convert each post into a plain object for easy handling in the template
-    const postsPlain = userPosts.map(post => post.get({ plain: true }));
+    const postsPlain = userPosts.map(post => {
+      let postPlain = post.get({ plain: true });
+      postPlain.userEdit = (post.user_id === user_id);
+      return postPlain;
+    });
 
     // render the 'dashboard' template, passing the user's posts to it
     res.render('dashboard', {

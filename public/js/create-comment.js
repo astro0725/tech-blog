@@ -1,12 +1,13 @@
 document.getElementById('create-comment').addEventListener('click', function() {
   const body = document.getElementById('comment-body').value;
+  const postId = window.location.pathname.split('/').pop();
 
-  fetch('/post', {
+  fetch('/comment', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ body }), 
+    body: JSON.stringify({ post_id: postId, body }),
   })
   .then(response => {
     if (response.ok) { 
@@ -16,9 +17,8 @@ document.getElementById('create-comment').addEventListener('click', function() {
   })
   .then(data => {
     console.log('Success:', data);
-    // Optionally, clear the textarea after successful submission
-    document.getElementById('comment-body').value = '';
-    window.location.reload();
+    document.getElementById('comment-body').value = ''; 
+    window.location.reload(); 
   })
   .catch((error) => {
     console.error('Error:', error);

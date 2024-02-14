@@ -3,20 +3,8 @@ const router = express.Router();
 const commentHandling = require('../controllers/commentHandling');
 
 // POST request to create a new comment
-router.post('/', async (req, res) => {
-  const { post_id, body } = req.body; 
-
-  try {
-    const result = await commentHandling.createComment(req, post_id, body);
-    if (result.success) {
-      res.json({ success: true, comment: result.comment });
-    } else {
-      res.status(400).json({ error: result.error });
-    }
-  } catch (error) {
-    console.error('Error creating comment:', error);
-    res.status(500).send({ error: "Error creating comment." });
-  }
+router.post('/', (req, res) => {
+  commentHandling.createComment(req, res);
 });
 
 // DELETE request to delete an existing comment

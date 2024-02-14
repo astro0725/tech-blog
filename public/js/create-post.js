@@ -1,31 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const openModalLink = document.getElementById('open-modal');
-  const closeModalLink = document.getElementById('close-modal');
-  const modal = document.getElementById('create-post-modal');
+  var openModalButton = document.getElementById('open-modal');
+  var modal = document.getElementById('create-post-modal');
+  function openModal() {
+    modal.style.display = 'grid';
+  }
+  openModalButton.addEventListener('click', openModal);
 
-  // Toggle modal visibility
-  const toggleModal = (isVisible) => {
-    modal.classList.toggle('hidden', !isVisible);
-  };
+  var closeModalButton = document.getElementById('close-modal');
 
-  // Open modal event listener
-  openModalLink.addEventListener('click', (event) => {
-    event.preventDefault();
-    toggleModal(true);
-  });
-
-  // Close modal event listener
-  closeModalLink.addEventListener('click', (event) => {
-    event.preventDefault();
-    toggleModal(false);
-  });
-
-  // Close modal if clicked outside of modal content
-  window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-      toggleModal(false);
-    }
-  });
+  function closeModal() {
+    modal.style.display = 'none'; 
+  }
+  closeModalButton.addEventListener('click', closeModal);
 });
 
 
@@ -49,7 +35,7 @@ document.getElementById('create-post').addEventListener('click', function() {
   .then(data => {
     console.log('Success:', data);
     var modal = document.getElementById('create-post-modal');
-    modal.classList.add('hidden');
+    modal.style.display = 'none';
     window.location.reload();
   })
   .catch((error) => {

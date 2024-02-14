@@ -1,6 +1,6 @@
-<a id='open-modal' class='submit-content :hover'>Create Post</a>
+<button href='#create-post-modal' id='open-modal' class='submit-content :hover'>Create Post</button>
 
-<div class='modal hidden' role='dialog' id='create-post-modal'>
+<div class='modal' role='dialog' id='create-post-modal'>
   <div class='modal-box'>
     <h3 class='modal-header'>Create A Post</h3>
     <form id='post-form' class='form-body'>
@@ -18,8 +18,10 @@
       </div>
     </form>
     <div class='modal-action'>
-      <a href='/dashboard' id='close-modal' class='cancel :hover'>Cancel</a>
-      <a href='/dashboard' id='create-post' class='submit-content :hover'>Confirm</a>
+      <button href='/dashboard' id='close-modal' class='cancel :hover'>Cancel</button>
+      <button href='/dashboard' id='create-post' class='submit-content :hover'>Confirm</button>
     </div>
   </div>
 </div>
+
+<script src='js/create-post.js'></script>

@@ -13,11 +13,7 @@ router.post('/', async (req, res) => {
 });
 
 // PUT request to edit an existing post
-router.put('/:id', async (req, res) => {
-  const { title, body } = req.body;
-  const { id } = req.params;
-  await postHandling.editPost(req, res, id, title, body);
-});
+router.put('/:id', postHandling.editPost);
 
 // DELETE request to delete an existing post
 router.delete('/:id', async (req, res) => {

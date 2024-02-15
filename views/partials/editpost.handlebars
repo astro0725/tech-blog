@@ -1,4 +1,4 @@
-<button href='#edit-post-modal' id='open-modal' data-post-id="{{id}}" class='submit-content :hover'>Edit this Post</button>
+<button href='#edit-post-modal' data-post-id="{{id}}" class='open-edit-modal submit-content :hover'>Edit this Post</button>
 
 <div class='modal' role='dialog' id='edit-post-modal'>
   <div class='modal-box'>
@@ -8,18 +8,18 @@
         <label class='label'>
           <span class='label-text'>Title</span>
         </label>
-        <input id='post-title' placeholder='Title' class='input input-bordered' required />
+        <input id='edit-title' placeholder='Title' class='input input-bordered' required />
       </div>
       <div class='form-control'>
         <label class='label'>
           <span class='label-text'>Content</span>
         </label>
-        <textarea id='post-body' placeholder='Type something here...'></textarea>
+        <textarea id='edit-body' placeholder='Type something here...'></textarea>
       </div>
     </form>
     <div class='modal-action'>
-      <button href='/dashboard' id='close-modal' class='cancel :hover'>Cancel</button>
-      <button href='/dashboard' id='edit-post' class='submit-content :hover'>Confirm</button>
+      <button href='/dashboard' id='close-edit-modal' class='cancel :hover'>Cancel</button>
+      <button href='/dashboard' id='edit-post' class='submit-content :hover'>Save</button>
     </div>
   </div>
 </div>

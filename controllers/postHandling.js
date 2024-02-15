@@ -32,40 +32,31 @@ async function createPost(req, title, body) {
   }
 }
 
-// function to edit a post
-async function editPost(req, res, title, body) {
+async function editPost(req, res) {
+  const { id } = req.params; 
+  const { title, body } = req.body; 
+
   try {
-    // check if user is logged in
-    if (!req.session.user_id) {
-      return { error: "User not authenticated." };
-    }
+    // find the post by ID
+    const post = await Post.findByPk(id);
 
-    // get user id from session
-    const user_id = req.session.user_id;
-
-    // find the post to edit based on post_id and user_id
-    const existingPost = await Post.findOne({
-      where: { post_id: post_id, user_id: user_id },
-    });
-
-    // if post not found, return error
-    if (!existingPost) {
-      return res.status(404).json({ error: "Post not found, unable to edit." });
+    // check if the post exists
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
     }
 
     // update the post's title and body
-    existingPost.title = title;
-    existingPost.body = body;
-    await existingPost.save();
+    post.title = title;
+    post.body = body;
 
-    // log the successful post edit
-    console.log('Post edited successfully:', existingPost);
+    // save the changes
+    await post.save();
+
+    // respond with the updated post
     return res.status(200).json({ message: "Post edited successfully" });
-
   } catch (error) {
-    // log any errors that occur
-    console.error('Error editing post:', error);
-    return res.status(500).json({ error: "Error editing post." });
+    console.error('Error updating post:', error);
+    res.status(500).json({ message: "Error updating post", error: error.message });
   }
 }
 
@@ -150,4 +141,4 @@ module.exports = {
   editPost,
   deletePost,
   getPostById,
-}
+};

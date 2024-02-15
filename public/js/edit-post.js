@@ -1,47 +1,48 @@
-document.addEventListener('DOMContentLoaded', function() {
-  var openModalButton = document.getElementById('open-modal');
-  var modal = document.getElementById('edit-post-modal');
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.open-edit-modal').forEach(button => {
+    button.addEventListener('click', function() {
+      const postId = this.getAttribute('data-post-id');
+      
+      fetch(`/post/${postId}`)
+        .then(response => response.json())
+        .then(data => {
+          // Directly target the inputs without using an index
+          document.querySelector('#edit-title').value = data.title;
+          document.querySelector('#edit-body').value = data.body;
+          
+          // Save the postId in a data attribute on the Save button for later use
+          document.querySelector('#edit-post').setAttribute('data-post-id', postId);
 
-  function openModal() {
-    var postId = this.getAttribute('data-post-id');
-    modal.setAttribute('data-post-id', postId); 
-    modal.style.display = 'grid';
-  }
-  openModalButton.addEventListener('click', openModal);
+          document.querySelector('#edit-post-modal').style.display = 'grid';
+        })
+        .catch(error => console.error('Error fetching post data:', error));
+    });
+  });
 
-  var closeModalButton = document.getElementById('close-modal');
+  document.querySelector('#edit-post').addEventListener('click', function() {
+    const postId = this.getAttribute('data-post-id');
+    const title = document.querySelector('#edit-title').value;
+    const body = document.querySelector('#edit-body').value;
 
-  function closeModal() {
-    modal.style.display = 'none'; 
-  }
-  closeModalButton.addEventListener('click', closeModal);
-});
+    fetch(`/post/${postId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ title, body }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      document.querySelector('#edit-post-modal').style.display = 'none';
+      // Refresh or update UI here
+    })
+    .catch(error => console.error('Error updating post:', error));
+  });
 
-document.getElementById('edit-post').addEventListener('click', function() {
-  const title = document.getElementById('post-title').value;
-  const body = document.getElementById('post-body').value;
-  const id = modal.getAttribute('data-post-id');
-
-  fetch(`/post/${id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ title, body }), 
-  })
-  .then(response => {
-    if (response.ok) { 
-      return response.json(); 
-    }
-    throw new Error('Network response was not ok.');
-  })
-  .then(data => {
-    console.log('Success:', data);
-    var modal = document.getElementById('edit-post-modal');
-    modal.style.display = 'none';
-    window.location.reload();
-  })
-  .catch((error) => {
-    console.error('Error:', error);
+  document.querySelectorAll('.cancel').forEach(button => {
+    button.addEventListener('click', function() {
+      document.querySelector('#edit-post-modal').style.display = 'none';
+    });
   });
 });

@@ -22,8 +22,7 @@ async function deletePost(postId) {
 
     if (response.ok) {
       console.log('Post deleted successfully');
-      // Redirect or refresh the page as needed
-      window.location.href = '/dashboard';
+      location.reload();
     } else {
       const error = await response.json();
       console.error('Failed to delete post:', error.message);

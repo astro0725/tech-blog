@@ -36,7 +36,7 @@ document.getElementById('create-post').addEventListener('click', function() {
     console.log('Success:', data);
     var modal = document.getElementById('create-post-modal');
     modal.style.display = 'none';
-    window.location.reload();
+    location.reload();
   })
   .catch((error) => {
     console.error('Error:', error);

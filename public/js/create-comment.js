@@ -18,7 +18,7 @@ document.getElementById('create-comment').addEventListener('click', function() {
   .then(data => {
     console.log('Success:', data);
     document.getElementById('comment-body').value = ''; 
-    window.location.reload(); 
+    location.reload();
   })
   .catch((error) => {
     console.error('Error:', error);

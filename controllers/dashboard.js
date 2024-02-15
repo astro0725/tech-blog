@@ -8,7 +8,9 @@ async function renderDashboard(req, res) {
     const user_id = req.session.user_id;
 
     if (!user_id) {
-      return res.status(401).send('User not authenticated');
+      return res.render('dashboard', {
+        userIsAuthenticated: false
+      });
     }
 
     // fetch all posts from the database for the logged-in user

@@ -1,4 +1,8 @@
 <div class='container'>
-  {{> post }}
-  {{> createpost }}
+  {{#if userIsAuthenticated}}
+    {{> createpost }}
+    {{> post }}
+  {{else}}
+    {{> error}}
+  {{/if}}
 </div>

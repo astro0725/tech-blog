@@ -12,8 +12,8 @@ router.post('/', async (req, res) => {
   res.json(result);
 });
 
-// PUT request to edit an existing post
-router.put('/:id', postHandling.editPost);
+// PATCH request to edit an existing post
+router.patch('/:id', postHandling.editPost);
 
 // DELETE request to delete an existing post
 router.delete('/:id', async (req, res) => {

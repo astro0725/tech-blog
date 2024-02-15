@@ -1,6 +1,6 @@
-<button href='#edit-post-modal' data-post-id="{{id}}" class='open-edit-modal submit-content :hover'>Edit this Post</button>
+<button href='#edit-post-modal' id='open-edit-{{id}}' data-post-id='{{id}}' class='submit-content :hover'>Edit this Post</button>
 
-<div class='modal' role='dialog' id='edit-post-modal'>
+<div class='modal' role='dialog' id='edit-modalbox-{{id}}'>
   <div class='modal-box'>
     <h3 class='modal-header'>Edit Post</h3>
     <form id='post-form' class='form-body'>
@@ -8,18 +8,18 @@
         <label class='label'>
           <span class='label-text'>Title</span>
         </label>
-        <input id='edit-title' placeholder='Title' class='input input-bordered' required />
+        <input id='edit-title-{{id}}' placeholder='Title' class='input input-bordered' required />
       </div>
       <div class='form-control'>
         <label class='label'>
           <span class='label-text'>Content</span>
         </label>
-        <textarea id='edit-body' placeholder='Type something here...'></textarea>
+        <textarea id='edit-body-{{id}}' placeholder='Type something here...'></textarea>
       </div>
     </form>
     <div class='modal-action'>
-      <button href='/dashboard' id='close-edit-modal' class='cancel :hover'>Cancel</button>
-      <button href='/dashboard' id='edit-post' class='submit-content :hover'>Save</button>
+      <button href='/dashboard' id='close-edit-modal-{{id}}' class='cancel :hover'>Cancel</button>
+      <button href='/dashboard' id='edit-post-{{id}}' class='submit-content :hover'>Save</button>
     </div>
   </div>
 </div>

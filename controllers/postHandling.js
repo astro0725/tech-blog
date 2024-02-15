@@ -76,7 +76,7 @@ async function deletePost(req, res) {
 
     // find the post to delete based on post_id and user_id
     const existingPost = await Post.findOne({
-      where: { post_id: post_id, user_id: user_id },
+      where: { id: post_id, user_id: user_id },
     });
 
     // if post not found, return error

@@ -167,6 +167,12 @@ textarea {
   overscroll-behavior: contain;
 }
 
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .modal-header {
   font-weight: 700;
   font-size: 18px; 

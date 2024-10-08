@@ -47,13 +47,11 @@ SOURCE db/schema.sql;
 
 ## Usage
 Once the application is running, you can access it locally at http://localhost:3001, or the desired port you put in your .env file. The website includes the following features:
-```
-Sign Up / Log In: Users can create accounts, log in, and manage their blog posts.
-Create Blog Posts: After logging in, users can create new blog posts from the dashboard.
-Edit / Delete Posts: Users can update or delete their own blog posts.
-Comments: Users can comment on blog posts while logged in, and comments will display the creator’s username and timestamp.
-Session Management: Users are automatically logged out after a set idle time.
-```
+- Sign Up / Log In: Users can create accounts, log in, and manage their blog posts.
+- Create Blog Posts: After logging in, users can create new blog posts from the dashboard.
+- Edit / Delete Posts: Users can update or delete their own blog posts.
+- Comments: Users can comment on blog posts while logged in, and comments will display the creator’s username and timestamp.
+- Session Management: Users are automatically logged out after a set idle time.
 
 ## License
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) <br/>
